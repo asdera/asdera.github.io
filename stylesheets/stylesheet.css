@@ -4,20 +4,20 @@ div {
 	width: 100px;
 	border-radius: 5px;
 	border: 2px solid black;
+	text-align: center;
 }
 
 #inner {
-	height: 75px;
-	width: 75px;
+	height: 500px;
+	width: 500px;
 	background-color: #547980;
 	position: fixed;
-	margin-left: 200px
+	margin-top: 125px
 }
 
 #outer {
-	height: 1500px;
-	width: 150px;
+	height: 750px;
+	width: 750px;
 	background-color: #45ADA8;
 	position: absolute;
-	margin-left: 100px;
 }
