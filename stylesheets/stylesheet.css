@@ -33,3 +33,7 @@ li {
         	font-size: 20px;
         	text-align: center
         }
+        .banner ul li img { 
+        	height: 400
+        	width: 400;
+        }
