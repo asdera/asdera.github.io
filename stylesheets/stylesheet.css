@@ -6,6 +6,8 @@
 
 .slide {
 	border: 10px solid red;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .hobbies {
