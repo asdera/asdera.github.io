@@ -1,6 +1,3 @@
-
-$(document).ready(function() {
-   $(function() {
-    $('.banner').unslider();
-});
-});
+/*
+ *Since I took out some of your page, there is no ".banner" elements
+ */
