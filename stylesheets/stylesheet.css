@@ -2,6 +2,10 @@ p {
   text-align: center;
 }
 
+li{
+  font-size: 32;
+}
+
 .bar {
   height: 500px;
   width: 500px;
