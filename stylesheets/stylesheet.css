@@ -3,10 +3,10 @@ p {
 }
 
 .banner {
-  height: 40px;
-  left: 0;
-  right: 0;
+  height: 800px;
+  width: 100px;
   postion: fixed;
+  background-color: green;
 }
 
 body {
