@@ -1,10 +1,12 @@
-
 p {
   text-align: center;
 }
 
-.about-me {
-
+.banner {
+  height: 40px;
+  left: 0;
+  right: 0;
+  postion: fixed;
 }
 
 body {
