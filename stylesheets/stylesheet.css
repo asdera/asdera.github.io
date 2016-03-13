@@ -5,10 +5,10 @@ p {
 .bar {
   height: 500px;
   width: 500px;
-  margin: 50px 50px;
+  /*margin: 50px 50px;
   position: fixed;
   border: 5px solid red;
-  border-radius: 25px
+  border-radius: 25px*/
 }
 
 body {
