@@ -1,11 +1,5 @@
 * {
   box-sizing: border-box; }
-  
-img {
-	background:url(bg_apple_little.gif) no-repeat center center;
-	height: 400;
-	width: 400;
-}
 
 .about-me {
   border-radius: 100%;
@@ -29,21 +23,10 @@ a {
   a:hover {
     text-decoration: underline; }
 
-.hobbies {
-  font-size: 50px;
-  font-family: Impact;
-}
-
-li {
-  color: blue;
-  font-size: 30px;
-  font-family: Big John;
-}
-
 .links {
-  width: 250px;
-  height: 350px;
-  background-color: #FAFAFA;
+  width: 500px;
+  height: 500px;
+  background-color: #66ffd9;
   margin: 20px 20px;
   display: inline-block;
   vertical-align: top;
