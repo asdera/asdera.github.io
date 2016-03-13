@@ -3,8 +3,9 @@ p {
 }
 
 .bar {
-  height: 800px;
-  width: 100px;
+  height: 500px;
+  width: 500px;
+  margin: 50px 50px;
   position: fixed;
   background-color: green;
 }
