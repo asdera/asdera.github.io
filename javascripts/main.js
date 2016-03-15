@@ -1,2 +1,2 @@
-$(function() { $('.banner').unslider() })
+//$(function() { $('.banner').unslider() })
 
