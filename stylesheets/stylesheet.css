@@ -4,6 +4,7 @@ p {
 
 .apps {
   margin-top: 120px;
+  text-align: center;
 }
 
 body {
@@ -21,7 +22,8 @@ body {
 .links {
   width: 300px;
   height: 400px;
-  background-color: #66ffd9;
+  background-color: rgba(255, 0, 0, 0.2);
+  /*background-color: #66ffd9;*/
   margin: 20px 20px;
   display: inline-block;
   box-shadow: 20px 20px 20px #a6a6a6;
