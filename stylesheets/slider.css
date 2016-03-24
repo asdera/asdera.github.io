@@ -1,6 +1,7 @@
 .banner { 
     position: fixed; 
     margin: 0;
+    padding: 0;
     width: 100%;
     background-color: #F0F8FF;
 }
