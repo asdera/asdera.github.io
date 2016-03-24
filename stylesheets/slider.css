@@ -1,6 +1,6 @@
 .banner { 
     position: fixed; 
-    overflow: auto; 
+    overflow: visible; 
     margin: 0;
     background-color: #F0F8FF;
 }
