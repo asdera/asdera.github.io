@@ -10,8 +10,6 @@ p {
 body {
   padding: 0;
   margin: auto;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
   background: url("https://www.planwallpaper.com/static/images/518071-background-hd_xO1TwRc.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -27,5 +25,7 @@ body {
   display: inline-block;
   box-shadow: 20px 20px 20px #a6a6a6;
   border: 10px solid green;
+  font-family: Sansation;
+  font-size: 32px;
 }
 
