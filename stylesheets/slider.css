@@ -1,7 +1,7 @@
 .banner { 
     position: fixed; 
     overflow: auto; 
-    margin: auto;
+    margin: 0;
     background-color: #F0F8FF;
 }
 .banner li { 
