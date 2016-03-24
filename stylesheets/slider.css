@@ -1,7 +1,7 @@
 .banner { 
-    position: relative; 
+    position: fixed; 
     overflow: auto; 
-    height: 100px;
+    background-color: #F0F8FF;
 }
 .banner li { 
     list-style: none; 
@@ -10,5 +10,4 @@
 }
 .banner ul li { 
     float: left; 
-    
 }
