@@ -1,2 +1,7 @@
-//$(function() { $('.banner').unslider() })
+$(document).ready(function() {
+  $(function() { 
+    $('.banner').unslider() 
+  })
+});
+
 
