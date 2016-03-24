@@ -2,13 +2,8 @@ p {
   text-align: center;
 }
 
-.bar {
-  height: 500px;
-  width: 500px;
-  /*margin: 50px 50px;
-  position: fixed;
-  border: 5px solid red;
-  border-radius: 25px*/
+.apps {
+  margin-top: 120px;
 }
 
 body {
