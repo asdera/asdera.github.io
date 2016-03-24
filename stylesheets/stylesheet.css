@@ -8,6 +8,7 @@ p {
 }
 
 body {
+  font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
   padding: 0;
   margin: auto;
   background: url("https://www.planwallpaper.com/static/images/518071-background-hd_xO1TwRc.jpg") no-repeat center center fixed; 
@@ -25,7 +26,6 @@ body {
   display: inline-block;
   box-shadow: 20px 20px 20px #a6a6a6;
   border: 10px solid green;
-  font-family: Sansation;
-  font-size: 32px;
+  font-size: 24px;
 }
 
