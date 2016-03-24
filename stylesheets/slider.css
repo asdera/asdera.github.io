@@ -5,6 +5,7 @@
     width: 100% !important;
     height: 100px !important;
     background-color: #F0F8FF;
+    border: 3px solid #800080; 
 }
 .banner li { 
     list-style: none; 
