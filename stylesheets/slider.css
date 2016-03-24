@@ -1,5 +1,6 @@
 .banner { 
     position: fixed; 
+    overflow: visible !important;
     margin: 0;
     width: 100% !important;
     height: 80px !important;
