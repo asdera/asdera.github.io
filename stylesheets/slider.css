@@ -1,7 +1,7 @@
 .banner { 
     position: fixed; 
     overflow: visible !important;
-    margin-top: 0;
+    top: 0;
     width: 100% !important;
     height: 100px !important;
     background-color: #F0F8FF;
