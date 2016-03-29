@@ -1,3 +1,3 @@
-# This is my website!
-## Hope you enjoy
-### Its DANK
+# This is my DANK website!
+## Hope you enjoy it's DANKNESS
+### Its DANK ayeeeee
