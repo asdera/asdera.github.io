@@ -1,3 +1,3 @@
-# This is my DANK website!
-## Hope you enjoy it's DANKNESS
-### Its DANK ayeeeee
+# This is my new personal website!
+## It contains links to all my highlighted projects
+### ANDREW WANG
