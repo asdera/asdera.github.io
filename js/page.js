@@ -33,20 +33,20 @@ $(document).ready(function() {
 	});
 	$("#myName h1").hover(function() {
 		$(this).animate({
-		    fontSize: 128
+		    fontSize: 96
 		}, 200);
 	}, function() {
 	    $(this).animate({
-		    fontSize: 96
+		    fontSize: 72
 		}, 100);
 	});
 	$("#myName p").hover(function() {
 		$(this).animate({
-		    fontSize: 64
+		    fontSize: 48
 		}, 200);
 	}, function() {
 	    $(this).animate({
-		    fontSize: 48
+		    fontSize: 36
 		}, 100);
 	});
 	$("#myResume").hover(function() {

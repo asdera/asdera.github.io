@@ -103,6 +103,7 @@ li a:hover {
 }
 
 #archive td {
+    /*height: 40%;*/
     background-color: #a3c6ff;
 }
 
@@ -121,24 +122,26 @@ li a:hover {
     width: 100%;
     z-index: 1;
     position: relative;
-}
-
-.project img{
-    margin: 30px;
-    height: 40%;
-    width: 40%;
-    float: left;
+    overflow: auto;
 }
 
 .project h1 {
     text-align: center;
     margin: 20px;
+    font-size: 48px;
 }
 
 .project p {
     font-family: "Advent Pro";
+    font-size: 24px;
 }
 
+.project img{
+    margin: 30px;
+    width: 30%;
+    height: auto;
+    float: left;
+}
 
 #contact {
     background-image: url("../img/zhang.jpg");
@@ -202,11 +205,11 @@ p{
 }
 
 .inner h1 {
-    font-size: 96px;
+    font-size: 72px;
 }
 
 .inner p {
-    font-size: 48px;
+    font-size: 36px;
 }
 
 #myName {
