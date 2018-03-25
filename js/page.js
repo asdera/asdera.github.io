@@ -1,9 +1,9 @@
 var parallaxSpeed = 0.5;
 var $root = $('html, body');
 
-archive = [
-
-]
+var archive = {
+	sections: ["Hottest", "Games", "Applications"],
+}
 
 $(document).scroll(function() {
 	$("#mountain").css("background-position-y", document.documentElement.scrollTop*parallaxSpeed+"px");
@@ -11,12 +11,35 @@ $(document).scroll(function() {
 });
 
 $(document).ready(function() {
+
+	var zoom = $(document).width() / 1920;
+	document.body.style.zoom = zoom;
+
+	$(".project.applications").hide();
+	$(".project.hottest").hide();
+
 	$("a[href='#']").click(function() {
 		$root.animate({ scrollTop: $("#"+$(this).attr("link")).offset().top }, 500);
 
 		return false; // prevents page from reloading
 	});
-	$(".project").hover(function() {
+	$(".shine.heading").click(function() {
+		var change = $(this).attr("heading");
+		var reSection = [];
+		var heading = archive.sections[change].toLowerCase();
+		var oldheading = archive.sections[1].toLowerCase();
+		reSection[0] = archive.sections[(change+2)%3];
+		reSection[1] = archive.sections[change];
+		reSection[2] = archive.sections[(change+1)%3];
+		archive.sections = reSection;
+		$(".heading[heading='0']").children().text(archive.sections[0]);
+		$(".heading[heading='1']").children().text(archive.sections[1]);
+		$(".heading[heading='2']").children().text(archive.sections[2]);
+		$(".project."+oldheading).fadeOut(200, function() {
+			$(".project."+heading).fadeIn(200);
+		});
+	});
+	$(".project, .shine").hover(function() {
 		$(this).parent("td").animate({
 		    backgroundColor: "#cfdff9"
 		}, 150);

@@ -112,7 +112,7 @@ li a:hover {
     background-color: #ffaaaa;
 }
 
-#archive .thick {
+#archive .heading {
     margin-top: 50px;
     text-align: center;
 }
@@ -129,6 +129,12 @@ li a:hover {
     text-align: center;
     margin: 20px;
     font-size: 48px;
+}
+
+.project h2 {
+    text-align: center;
+    margin: 72px;
+    font-size: 36px;
 }
 
 .project p {
