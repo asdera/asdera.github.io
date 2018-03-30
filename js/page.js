@@ -5,21 +5,23 @@ var archive = {
 	sections: ["Hottest", "Games", "Applications"],
 }
 
+var zoom = 1;
+
 $(document).scroll(function() {
-	$("#mountain").css("background-position-y", document.documentElement.scrollTop*parallaxSpeed+"px");
-	$("#contact").css("background-position-y", (document.documentElement.scrollTop*parallaxSpeed-$("#contact").height())+"px");
+	$("#mountain").css("background-position-y", document.documentElement.scrollTop*parallaxSpeed*zoom+"px");
+	$("#contact").css("background-position-y", (document.documentElement.scrollTop*parallaxSpeed-$("#contact").height()*zoom)+"px");
 });
 
 $(document).ready(function() {
 
-	var zoom = $(document).width() / 1920;
+	zoom = $(document).width() / 1920;
 	document.body.style.zoom = zoom;
 
 	$(".project.applications").hide();
 	$(".project.hottest").hide();
 
 	$("a[href='#']").click(function() {
-		$root.animate({ scrollTop: $("#"+$(this).attr("link")).offset().top }, 500);
+		$root.animate({ scrollTop: $("#"+$(this).attr("link")).offset().top*zoom }, 500);
 
 		return false; // prevents page from reloading
 	});
