@@ -14,7 +14,7 @@ $(document).scroll(function() {
 
 $(document).ready(function() {
 
-	zoom = $(document).width() / 1920;
+	zoom = $(document).width() / 2000;
 	document.body.style.zoom = zoom;
 
 	$(".project.applications").hide();
