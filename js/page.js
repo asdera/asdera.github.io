@@ -2,7 +2,7 @@ var parallaxSpeed = 0.5;
 var $root = $('html, body');
 
 var archive = {
-	sections: ["Hottest", "Games", "Applications"],
+	sections: ["Other", "Games", "Applications"],
 }
 
 var zoom = 1;
