@@ -18,7 +18,7 @@ $(document).ready(function() {
 	document.body.style.zoom = zoom;
 
 	$(".project.applications").hide();
-	$(".project.hottest").hide();
+	$(".project.other").hide();
 
 	$("a[href='#']").click(function() {
 		$root.animate({ scrollTop: $("#"+$(this).attr("link")).offset().top*zoom }, 500);
@@ -26,6 +26,7 @@ $(document).ready(function() {
 		return false; // prevents page from reloading
 	});
 	$(".shine.heading").click(function() {
+		console.log(archive.sections)
 		var change = $(this).attr("heading");
 		var reSection = [];
 		var heading = archive.sections[change].toLowerCase();
