@@ -1,0 +1,42 @@
+#top,
+#bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50%;
+    width: 100%;
+}
+
+#top {
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bottom {
+    bottom: 0;
+}
+
+.inner {
+    text-align: center;  
+}
+
+.inner h1 {
+    font-size: 10em;
+    margin-top: 5px;
+    /* width: 100%; */
+}
+
+canvas {
+    /* display: none; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}

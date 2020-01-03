@@ -1,0 +1,17 @@
+.section {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.section-dark {
+    background: #282828;
+    color: white;
+}
+
+.section-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    overflow: hidden;
+}
