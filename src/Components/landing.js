@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "./landing.css";
 import Sketch from 'react-p5'
 
@@ -7,6 +7,7 @@ export default class Landing extends Component {
         super(props);
         this.state = { width: props.width, height: props.height };
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     
     componentDidMount() {
@@ -32,6 +33,10 @@ export default class Landing extends Component {
     colors;
     f;
     select;
+    cursor;
+    dark = false;
+    mode=0;
+    j;
 
     setup = (p5, canvasParentRef) => {
         p5.createCanvas(window.innerWidth, window.innerHeight).parent(canvasParentRef)
@@ -48,26 +53,47 @@ export default class Landing extends Component {
             p5.color(255, 255, 0),
         ];
         
-        this.f = 180;
+        this.f = 1;
         this.select = 0;
     }
 
     draw = p5 => {
+        p5.blendMode(p5.BLEND);
+        p5.background(this.dark ? 0 : 255);
+       
+        p5.noStroke();
+        p5.textSize(40);
+        p5.textAlign(p5.CENTER);
+        p5.fill(this.dark ? 255 : 0);
+        p5.text("Andrew Wang", p5.width/2, p5.height/3);
+        
+        p5.blendMode(this.dark ? p5.MULTIPLY : p5.ADD);
+        p5.noStroke();
+        p5.fill(255, 255, 0);
+        p5.ellipse(p5.mouseX, p5.mouseY, 64)
+
         if (this.f > 0) {
-            p5.blendMode(p5.BLEND);
-            p5.background(40, 40, 40);
-            p5.blendMode(p5.ADD);
+            
+            p5.blendMode(this.dark ? p5.ADD : p5.MULTIPLY);
     
             p5.noFill();
             p5.strokeWeight(12);
             this.lineWave(p5);
             // circleWave();
             this.f--;
+        } else {
+            p5.blendMode(p5.BLEND);
+            p5.noFill();
+            p5.stroke(this.dark ? 255 : 0);
+            p5.strokeWeight(12);
+            p5.line(0, p5.height/2, p5.width, p5.height/2);
         }
+
     }
 
-    mousePressed = p5 => {
-        if (this.f == 0) {
+    handleClick() {
+        this.dark = !this.dark;
+        if (this.f === 0) {
             this.f = 180;
         }
     }
@@ -93,15 +119,15 @@ export default class Landing extends Component {
             <>
                 <Sketch setup={this.setup} draw={this.draw} />
                 <div className="section-content" id="landing">
-                    <div id="top">
+                    <div id="top" onClick={this.handleClick}>
                         <div className="inner">
-                            <h1>Andrew Wang</h1>
+                            {/* <h1>Andrew Wang</h1> */}
 
                             {/* <p>subtitle</p>
                             <p>subtitle</p> */}
                         </div>
                     </div>
-                    <div id="bottom">
+                    <div id="bottom" onClick={this.handleClick}>
 
                     </div> 
                 </div>
