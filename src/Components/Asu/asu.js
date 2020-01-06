@@ -6,7 +6,7 @@ class Asu {
         this.connections = [];
         this.letters = [];
         this.pix = pix;
-        this.mdel = -5;
+        this.mdel = -1;
         this.next = {
             x: 2,
             y: 2,
@@ -110,14 +110,17 @@ class Asu {
             
             if (zed !== 0) {
                 var dis = p5.dist(c.letter.x, c.letter.y, (p5.mouseX-this.display.x), (p5.mouseY-this.display.y)) / this.pix * 0.4;
-                var ang = p5.atan2(c.letter.y - (p5.mouseY-this.display.y), c.letter.x - (p5.mouseX-this.display.x)) + zed;
-                var str = (p5.exp(-dis * dis * 0.2) - p5.exp(-dis * dis * 32)) * 0.4;
-                var x = p5.cos(ang) * str * this.pix;
-                var y = p5.sin(ang) * str * this.pix;
-                var a = p5.cos(ang*2+str) * str * p5.PI/8;
-                p5.translate(this.display.x + c.letter.x, this.display.y + c.letter.y);
-                p5.rotate(a);
-                p5.translate(x - c.letter.x - this.display.x, y - c.letter.y - this.display.y);
+                // console.log(dis)
+                if (dis < 5) {
+                    var ang = p5.atan2(c.letter.y - (p5.mouseY-this.display.y), c.letter.x - (p5.mouseX-this.display.x)) + zed;
+                    var str = (p5.exp(-dis * dis * 0.2) - p5.exp(-dis * dis * 32)) * 0.4;
+                    var x = p5.cos(ang) * str * this.pix;
+                    var y = p5.sin(ang) * str * this.pix;
+                    var a = p5.cos(ang*2+str) * str * p5.PI/8;
+                    p5.translate(this.display.x + c.letter.x, this.display.y + c.letter.y);
+                    p5.rotate(a);
+                    p5.translate(x - c.letter.x - this.display.x, y - c.letter.y - this.display.y);
+                }
             }
             p5.fill(rain);
 
@@ -258,7 +261,7 @@ class Asu {
             this.react.next.x = this.next.x;
             this.react.next.y = this.next.y;
             for (var i = 0; i < this.connections.length; i++) {
-                this.connections[i].reverse = this.mdel;
+                this.connections[i].reverse = this.react.mdel;
             }
             this.erase = true;
         }
@@ -280,6 +283,13 @@ class Asu {
                 this.letters.push(this.Letter(p5, Alphabet[s[i]], "black", true));
             }
         }
+    }
+
+    delete(s=0) {
+        if (s !== 0) {
+            this.mdel = -s;
+        }
+        this.letters[this.letters.length - 1].del();
     }
 }
 
