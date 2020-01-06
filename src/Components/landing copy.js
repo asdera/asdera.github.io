@@ -2,7 +2,53 @@ import React, { Component } from "react";
 import "./landing.css";
 import Sketch from 'react-p5'
 
-export default class Landing extends Component {
+
+function Node(i, j) {
+    this.x = i;
+    this.y = j;
+    this.ox = i;
+    this.oy = j;
+    this.min = 2;
+    this.max = 50;
+    this.r = 0;
+    this.grow = 0;
+    this.reverse = 1;
+    this.s = 1;
+    this.d = 0.1;
+    this.colour = 0;
+    // this.cursor = function() {
+    //     var dis = dist(this.ox, this.oy, mouseX, mouseY) / this.pix / 6;
+    //     // var ang = atan2(mouseY - this.oy, mouseX - this.ox);
+    //     var ang = atan2(this.oy - mouseY, this.ox - mouseX);
+    //     this.x = this.ox + cos(ang) * exp(-dis * dis / 2) * this.pix / 2;
+    //     this.y = this.oy + sin(ang) * exp(-dis * dis / 2) * this.pix / 2;
+    // }
+}
+
+function Connection(nodes, i, j, ii, jj, c = 0, letter = null) {
+    this.a = nodes[i][j];
+    this.b = nodes[ii][jj];
+    this.ij = [i, j, ii, jj];
+    this.a.colour = c;
+    this.b.colour = c;
+    this.control = 0;
+    this.reach = 0;
+    this.thick = 0;
+    this.s = 0.025;
+    this.t = 50;
+    this.f = this.t;
+    this.m = (jj - j) / (ii - i);
+    this.p = -1 / this.m;
+    this.check = [0.8, 0.7, 0.6];
+    this.reverse = 0;
+    this.colour = c;
+    this.letter = letter;
+    this.a.letter = this.letter;
+    this.b.letter = this.letter;
+}
+
+
+export default class Landing extends {Component, Node, Connection} {
     constructor(props) {
         super(props);
         this.state = { width: props.width, height: props.height };
@@ -27,63 +73,19 @@ export default class Landing extends Component {
         console.log("hey")
        
     }
-
+    
     nodes = [];
     connections = [];
     letters = [];
     pix = 30;
     mdel = -5;
     next = {
-    x: 2,
-    y: 2,
-    colour: "white"
+        x: 2,
+        y: 2,
+        colour: "white"
     }
 
     wrap;
-
-    Node(i, j) {
-        this.x = i;
-        this.y = j;
-        this.ox = i;
-        this.oy = j;
-        this.min = 2;
-        this.max = 50;
-        this.r = 0;
-        this.grow = 0;
-        this.reverse = 1;
-        this.s = 1;
-        this.d = 0.1;
-        this.colour = 0;
-        // this.cursor = function() {
-        //     var dis = dist(this.ox, this.oy, mouseX, mouseY) / pix / 6;
-        //     // var ang = atan2(mouseY - this.oy, mouseX - this.ox);
-        //     var ang = atan2(this.oy - mouseY, this.ox - mouseX);
-        //     this.x = this.ox + cos(ang) * exp(-dis * dis / 2) * pix / 2;
-        //     this.y = this.oy + sin(ang) * exp(-dis * dis / 2) * pix / 2;
-        // }
-    }
-
-    Connection(i, j, ii, jj, c = 0, letter = null) {
-        this.a = nodes[i][j];
-        this.b = nodes[ii][jj];
-        this.ij = [i, j, ii, jj];
-        this.a.colour = c;
-        this.b.colour = c;
-        this.control = 0;
-        this.reach = 0;
-        this.thick = 0;
-        this.s = 0.025;
-        this.t = 50;
-        this.f = this.t;
-        this.m = (jj - j) / (ii - i);
-        this.p = -1 / this.m;
-        this.check = [0.8, 0.7, 0.6];
-        this.reverse = 0;
-        this.colour = c;
-        this.letter = letter;
-        this.a.letter = this.letter;
-        this.b.letter = this.letter;
-    }
 
     setup = (p5, canvasParentRef) => {
         p5.createCanvas(window.innerWidth, window.innerHeight).parent(canvasParentRef)
@@ -91,15 +93,16 @@ export default class Landing extends Component {
         p5.canvas.style.width = "100%";
         p5.canvas.style.height = "100%";
         
-        for (var i = 0; i <= width; i += pix) {
+        for (var i = 0; i <= p5.width; i += this.pix) {
             var row = [];
-            for (var j = 0; j <= height; j += pix) {
-            row.push(new Node(i, j));
+            for (var j = 0; j <= p5.height; j += this.pix) {
+                // console.log(new Node(i, j))
+                row.push(new Node(i, j));
             }
-            nodes.push(row);
+            this.nodes.push(row);
         }
 
-        warp = width / pix - 2;
+        this.warp = p5.width / this.pix - 2;
         
         
         // connections.push(
@@ -110,43 +113,43 @@ export default class Landing extends Component {
         // );
         
         // letters.push(new Letter(alphabet["A"], "black", true));
-        wordo("Andrew");
+        this.wordo("Andrew");
     }
 
     f = 0;
 
-    draw = (p5, canvasParentRef) => {
-        f++;
+    draw = p5 => {
+        this.f++;
         
-        background(0);
-        stroke(0);
-        fill(0);
-        strokeWeight(0);
-        keys();
-        pause = true;
+        p5.background(0);
+        p5.stroke(0);
+        p5.fill(0);
+        p5.strokeWeight(0);
+        // keys();
+        // var pause = true;
         
         // for (var i = 0; i < letters.length; i++) {
         //   ellipse(letters[i].x, letters[i].y, 50);
         // }
 
-        blendMode(ADD);
-        letItGo(color(255, 0, 0), PI/6);
-        letItGo(color(0, 255, 0), 5*PI/6);
-        letItGo(color(0, 0, 255), 3*PI/2);
-        blendMode(BLEND);
+        p5.blendMode(p5.ADD);
+        this.letItGo(p5.color(255, 0, 0), PI/6);
+        this.letItGo(p5.color(0, 255, 0), 5*PI/6);
+        this.letItGo(p5.color(0, 0, 255), 3*PI/2);
+        p5.blendMode(p5.BLEND);
 
-        connections = connections.filter(x => x.reverse);
-        letters = letters.filter(x => !x.erase);
+        this.connections = connections.filter(x => x.reverse);
+        this.letters = letters.filter(x => !x.erase);
 
-        push();
-        strokeWeight(3);
-        stroke(next.colour);
-        line(nodes[next.x][next.y].x - pix / 2, nodes[next.x][next.y].y, nodes[next.x][next.y].x - pix / 2, nodes[next.x][next.y + 4].y)
-        pop();
+        p5.push();
+        p5.strokeWeight(3);
+        p5.stroke(next.colour);
+        p5.line(nodes[next.x][next.y].x - this.pix / 2, nodes[next.x][next.y].y, nodes[next.x][next.y].x - this.pix / 2, nodes[next.x][next.y + 4].y)
+        p5.pop();
 
-        if (f % 15 == 0) {
+        if (this.f % 15 == 0) {
             if (next.colour == "white") {
-            next.colour = random(["purple", "blue", "magenta", "hotpink", "indigo", "navy"]);
+            next.colour = p5.random(["purple", "blue", "magenta", "hotpink", "indigo", "navy"]);
             } else {
             next.colour = "white";
             }
@@ -164,227 +167,226 @@ export default class Landing extends Component {
             var offset;
             
             if (zed != 0) {
-            var dis = dist(c.letter.x, c.letter.y, mouseX, mouseY) / pix * 0.3;
-            var ang = atan2(c.letter.y - mouseY, c.letter.x - mouseX) + zed;
-            var str = (exp(-dis * dis) - exp(-dis * dis * 32)) * 0.4;
-            x = cos(ang) * str * pix;
-            y = sin(ang) * str * pix;
-            a = cos(ang*2+str) * str * PI/12;
-            translate(c.letter.x, c.letter.y);
-            rotate(a);
-            translate(x - c.letter.x, y - c.letter.y);
+                var dis = dist(c.letter.x, c.letter.y, mouseX, mouseY) / this.pix * 0.3;
+                var ang = atan2(c.letter.y - mouseY, c.letter.x - mouseX) + zed;
+                var str = (exp(-dis * dis) - exp(-dis * dis * 32)) * 0.4;
+                x = cos(ang) * str * this.pix;
+                y = sin(ang) * str * this.pix;
+                a = cos(ang*2+str) * str * PI/12;
+                translate(c.letter.x, c.letter.y);
+                rotate(a);
+                translate(x - c.letter.x, y - c.letter.y);
             }
             fill(rain);
 
             // print(pb.r);
 
             if (c.f > c.t) {
-            c.control = 0;
-            c.reach = 0;
-            c.thick = 0;
-            c.s = 0.025;
-            c.t = 50;
-            c.f = c.t;
-            c.reverse = 0;
-            pa.r = 0;
-            pb.r = 0;
+                c.control = 0;
+                c.reach = 0;
+                c.thick = 0;
+                c.s = 0.025;
+                c.t = 50;
+                c.f = c.t;
+                c.reverse = 0;
+                pa.r = 0;
+                pb.r = 0;
             } else if ((c.f > 0 && c.reverse == 1) || (c.f <= c.t && c.reverse == mdel)) {
-            if (c.f > c.t * c.check[0]) {
-                pa.grow = 0.25 / (1 - c.check[0]);
-                pb.grow = 0.25 / (1 - c.check[0]);
-            } else if (c.f > c.t * c.check[1]) {
-                c.reach += 0.5 / c.t / (c.check[0] - c.check[1]) * c.reverse;
-                pa.grow = -0.75 / c.check[0];
-                pb.grow = -0.75 / c.check[0];
-            } else if (c.f > c.t * c.check[2]) {
-                c.control += 0.25 / c.t / (c.check[1] - c.check[2]) * c.reverse;
-                pa.grow = -0.75 / c.check[0];
-                pb.grow = -0.75 / c.check[0];
+                if (c.f > c.t * c.check[0]) {
+                    pa.grow = 0.25 / (1 - c.check[0]);
+                    pb.grow = 0.25 / (1 - c.check[0]);
+                } else if (c.f > c.t * c.check[1]) {
+                    c.reach += 0.5 / c.t / (c.check[0] - c.check[1]) * c.reverse;
+                    pa.grow = -0.75 / c.check[0];
+                    pb.grow = -0.75 / c.check[0];
+                } else if (c.f > c.t * c.check[2]) {
+                    c.control += 0.25 / c.t / (c.check[1] - c.check[2]) * c.reverse;
+                    pa.grow = -0.75 / c.check[0];
+                    pb.grow = -0.75 / c.check[0];
+                } else {
+                    c.thick += 2 / c.t / c.check[2] * c.reverse;
+                    pa.grow = -0.75 / c.check[0];
+                    pb.grow = -0.75 / c.check[0];
+                }
+                if (c.reverse == mdel) {
+                    c.f -= mdel;
+                    pa.reverse = mdel;
+                    pb.reverse = mdel;
+                } else {
+                    c.f--;
+                    pa.reverse = 1;
+                    pb.reverse = 1;
+                }
+            }
+
+            // print(c.p, c.m);
+            var sign = abs(c.p) / c.p;
+            sign = isNaN(sign) ? 1 : sign;
+            offset = {
+            x: sign * sqrt(1 / (c.p ** 2 + 1)),
+            y: sqrt(1 / (c.m ** 2 + 1)),
+            }
+
+            // print(offset)
+
+            if (c.f <= c.t * c.check[2]) {
+
+                // strokeWeight(1);
+                beginShape();
+
+                vertex(pa.x + pa.r * offset.x, pa.y + pa.r * offset.y);
+                quadraticVertex((pa.x + pb.x) / 2 - (pb.r + pa.r) / 2 * (1 - c.thick) * offset.x, (pa.y + pb.y) / 2 - (pb.r + pa.r) / 2 * (1 - c.thick) * offset.y, pb.x + pb.r * offset.x, pb.y + pb.r * offset.y);
+                vertex(pb.x - pb.r * offset.x, pb.y - pb.r * offset.y);
+                quadraticVertex((pa.x + pb.x) / 2 + (pb.r + pa.r) / 2 * (1 - c.thick) * offset.x, (pa.y + pb.y) / 2 + (pb.r + pa.r) / 2 * (1 - c.thick) * offset.y, pa.x - pa.r * offset.x, pa.y - pa.r * offset.y);
+                endShape(CLOSE);
+
             } else {
-                c.thick += 2 / c.t / c.check[2] * c.reverse;
-                pa.grow = -0.75 / c.check[0];
-                pb.grow = -0.75 / c.check[0];
+                // strokeWeight(1);
+                var n = [pb, pa];
+
+                for (var j = 0; j < 2; j++) {
+                    // ellipse(n[j].x + n[j].r * offset.x, n[j].y + n[j].r * offset.y, 10);
+                    beginShape();
+                    control = {
+                    x: n[j].x + (n[(j + 1) % 2].x - n[j].x) * c.control,
+                    y: n[j].y + (n[(j + 1) % 2].y - n[j].y) * c.control
+                    }
+                    reach = {
+                    x: n[j].x + (n[(j + 1) % 2].x - n[j].x) * c.reach,
+                    y: n[j].y + (n[(j + 1) % 2].y - n[j].y) * c.reach
+                    }
+                    vertex(n[j].x + n[j].r * offset.x, n[j].y + n[j].r * offset.y);
+                    quadraticVertex(control.x, control.y, reach.x, reach.y);
+                    quadraticVertex(control.x, control.y, n[j].x - n[j].r * offset.x, n[j].y - n[j].r * offset.y);
+                    endShape(CLOSE);
+                }
             }
-            if (c.reverse == mdel) {
-                c.f -= mdel;
-                pa.reverse = mdel;
-                pb.reverse = mdel;
-            } else {
-                c.f--;
-                pa.reverse = 1;
-                pb.reverse = 1;
+
+
+            ellipse(pa.x, pa.y, pa.r * 2);
+            ellipse(pb.x, pb.y, pb.r * 2);
+
+            pop();
+        }
+
+        for (var i = 0; i < nodes.length; i++) {
+            var row = nodes[i];
+            for (var j = 0; j < row.length; j++) {
+                var node = row[j];
+                // node.cursor();
+                if (node.grow) {
+                    node.r += node.grow > 0 ? node.s * node.grow * node.reverse : node.d * node.grow * node.reverse;
+                    node.grow = 0;
+                }
+            }
+        }
+    }
+
+    Letter(lines, c = 0, t = true) {
+        this.strokes = lines;
+        this.connections = [];
+        this.erase = false;
+
+        this.next = {
+            x: next.x,
+            y: next.y
+        };
+        
+        print(this, lines, c, t)
+        
+        this.x = (this.next.x + (min(this.strokes.map(x => x[0]).concat(this.strokes.map(x => x[2]))) + max(this.strokes.map(x => x[0]).concat(this.strokes.map(x => x[2])))) / 2) * this.pix;
+        this.y = (this.next.y + (min(this.strokes.map(y => y[1]).concat(this.strokes.map(y => y[3]))) + max(this.strokes.map(y => y[1]).concat(this.strokes.map(y => y[3])))) / 2) * this.pix;
+
+        for (var i = 0; i < lines.length; i++) {
+            this.connections.push(new Connection(nodes, lines[i][0] + next.x, lines[i][1] + next.y, lines[i][2] + next.x, lines[i][3] + next.y, c, this));
+        }
+
+
+        connections = connections.concat(this.connections);
+
+        this.type = function() {
+            next.x += c == null ? 2 : max(this.strokes.map(x => x[0]).concat(this.strokes.map(x => x[2]))) + 1;
+            if (next.x >= warp || c == "return") {
+            // if (nodes[0][next.y].y > height - this.pix * 5) {
+            //   return;
+            // }
+            next.y += 5;
+            next.x = 2;
+            }
+            for (var i = 0; i < this.connections.length; i++) {
+            this.connections[i].reverse = 1;
             }
         }
 
-        // print(c.p, c.m);
-        var sign = abs(c.p) / c.p;
-        sign = isNaN(sign) ? 1 : sign;
-        offset = {
-        x: sign * sqrt(1 / (c.p ** 2 + 1)),
-        y: sqrt(1 / (c.m ** 2 + 1)),
-        }
-
-        // print(offset)
-
-        if (c.f <= c.t * c.check[2]) {
-
-        // strokeWeight(1);
-        beginShape();
-
-        vertex(pa.x + pa.r * offset.x, pa.y + pa.r * offset.y);
-        quadraticVertex((pa.x + pb.x) / 2 - (pb.r + pa.r) / 2 * (1 - c.thick) * offset.x, (pa.y + pb.y) / 2 - (pb.r + pa.r) / 2 * (1 - c.thick) * offset.y, pb.x + pb.r * offset.x, pb.y + pb.r * offset.y);
-        vertex(pb.x - pb.r * offset.x, pb.y - pb.r * offset.y);
-        quadraticVertex((pa.x + pb.x) / 2 + (pb.r + pa.r) / 2 * (1 - c.thick) * offset.x, (pa.y + pb.y) / 2 + (pb.r + pa.r) / 2 * (1 - c.thick) * offset.y, pa.x - pa.r * offset.x, pa.y - pa.r * offset.y);
-        endShape(CLOSE);
-
-        } else {
-        // strokeWeight(1);
-        var n = [pb, pa];
-
-        for (var j = 0; j < 2; j++) {
-            // ellipse(n[j].x + n[j].r * offset.x, n[j].y + n[j].r * offset.y, 10);
-            beginShape();
-            control = {
-            x: n[j].x + (n[(j + 1) % 2].x - n[j].x) * c.control,
-            y: n[j].y + (n[(j + 1) % 2].y - n[j].y) * c.control
+        this.del = function() {
+            next.x = this.next.x;
+            next.y = this.next.y;
+            for (var i = 0; i < this.connections.length; i++) {
+            this.connections[i].reverse = mdel;
             }
-            reach = {
-            x: n[j].x + (n[(j + 1) % 2].x - n[j].x) * c.reach,
-            y: n[j].y + (n[(j + 1) % 2].y - n[j].y) * c.reach
-            }
-            vertex(n[j].x + n[j].r * offset.x, n[j].y + n[j].r * offset.y);
-            quadraticVertex(control.x, control.y, reach.x, reach.y);
-            quadraticVertex(control.x, control.y, n[j].x - n[j].r * offset.x, n[j].y - n[j].r * offset.y);
-            endShape(CLOSE);
-        }
+            this.erase = true;
         }
 
-
-        ellipse(pa.x, pa.y, pa.r * 2);
-        ellipse(pb.x, pb.y, pb.r * 2);
-
-        pop();
-    }
-
-    for (var i = 0; i < nodes.length; i++) {
-        var row = nodes[i];
-        for (var j = 0; j < row.length; j++) {
-        var node = row[j];
-        // node.cursor();
-        if (node.grow) {
-            node.r += node.grow > 0 ? node.s * node.grow * node.reverse : node.d * node.grow * node.reverse;
-            node.grow = 0;
+        if (t) {
+            this.type();
         }
-        }
-    }
-    }
 
-    function Letter(lines, c = 0, t = true) {
-    this.strokes = lines;
-    this.connections = [];
-    this.erase = false;
-
-    this.next = {
-        x: next.x,
-        y: next.y
-    };
-    
-    print(this, lines, c, t)
-    
-    this.x = (this.next.x + (min(this.strokes.map(x => x[0]).concat(this.strokes.map(x => x[2]))) + max(this.strokes.map(x => x[0]).concat(this.strokes.map(x => x[2])))) / 2) * pix;
-    this.y = (this.next.y + (min(this.strokes.map(y => y[1]).concat(this.strokes.map(y => y[3]))) + max(this.strokes.map(y => y[1]).concat(this.strokes.map(y => y[3])))) / 2) * pix;
-
-    for (var i = 0; i < lines.length; i++) {
-        this.connections.push(new Connection(lines[i][0] + next.x, lines[i][1] + next.y, lines[i][2] + next.x, lines[i][3] + next.y, c, this));
+        letters.push(this);
     }
 
 
-    connections = connections.concat(this.connections);
-
-    this.type = function() {
-        next.x += c == null ? 2 : max(this.strokes.map(x => x[0]).concat(this.strokes.map(x => x[2]))) + 1;
-        if (next.x >= warp || c == "return") {
-        // if (nodes[0][next.y].y > height - pix * 5) {
-        //   return;
-        // }
-        next.y += 5;
-        next.x = 2;
-        }
-        for (var i = 0; i < this.connections.length; i++) {
-        this.connections[i].reverse = 1;
-        }
-    }
-
-    this.del = function() {
-        next.x = this.next.x;
-        next.y = this.next.y;
-        for (var i = 0; i < this.connections.length; i++) {
-        this.connections[i].reverse = mdel;
-        }
-        this.erase = true;
-    }
-
-    if (t) {
-        this.type();
-    }
-
-    letters.push(this);
-    }
-
-
-    function keys() {
-    if (keyIsDown(68)) {
-        connections[0].reach -= 0.01
-    }
-    if (keyIsDown(83)) {
-        connections[0].reach += 0.01
-        connections[0].control += 0.005
-    }
-    if (keyIsDown(87)) {
-        connections[0].reach -= 0.01
-        connections[0].control -= 0.005
-    }
-    }
-
-    function keyTyped() {
-
-    if (next.y + 5 < height / pix) {
-        if (keyCode == 13) {
-        letters.push(new Letter([], "return", true));
-        return;
-        }
-        if (key == " ") {
-        letters.push(new Letter([], null, true));
-        return;
-        }
-        var colour = "black"; //random(["purple", "blue", "magenta", "hotpink", "indigo", "navy"]);
-        // print(key);
-        // print(colour);
-
-        if (alphabet[key]) {
-        letters.push(new Letter(alphabet[key], colour, true));
-        } else {
-        print(key);
-        }
-    }
-    }
-
-
-    function keyPressed() {
-    if ((keyCode == BACKSPACE || keyCode == DELETE) && letters.length) {
-        letters[letters.length - 1].del();
-    }
-    // if (key == 13) {
-    //   letters.push(new Letter([], "return", true));
-    //   return;
+    // function keys() {
+    //     if (keyIsDown(68)) {
+    //         connections[0].reach -= 0.01
+    //     }
+    //     if (keyIsDown(83)) {
+    //         connections[0].reach += 0.01
+    //         connections[0].control += 0.005
+    //     }
+    //     if (keyIsDown(87)) {
+    //         connections[0].reach -= 0.01
+    //         connections[0].control -= 0.005
+    //     }
     // }
-    }
 
-    function wordo(s) {
-    for (var i = 0; i < s.length; i++) {
-        print(s[i])
-        letters.push(new Letter(alphabet[s[i]], "black", true));
-    }
+    // function keyTyped() {
+    //     if (next.y + 5 < height / this.pix) {
+    //         if (keyCode == 13) {
+    //             letters.push(new Letter([], "return", true));
+    //             return;
+    //         }
+    //         if (key == " ") {
+    //             letters.push(new Letter([], null, true));
+    //             return;
+    //         }
+    //         var colour = "black"; //random(["purple", "blue", "magenta", "hotpink", "indigo", "navy"]);
+    //         // print(key);
+    //         // print(colour);
+
+    //         if (alphabet[key]) {
+    //             letters.push(new Letter(alphabet[key], colour, true));
+    //         } else {
+    //             print(key);
+    //         }
+    //     }
+    // }
+
+
+    // function keyPressed() {
+    //     if ((keyCode == BACKSPACE || keyCode == DELETE) && letters.length) {
+    //         letters[letters.length - 1].del();
+    //     }
+    //     // if (key == 13) {
+    //     //   letters.push(new Letter([], "return", true));
+    //     //   return;
+    //     // }
+    // }
+
+    wordo(s) {
+        for (var i = 0; i < s.length; i++) {
+            print(s[i])
+            letters.push(new Letter(alphabet[s[i]], "black", true));
+        }
     }
 
     // x = 50
