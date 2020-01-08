@@ -7,9 +7,12 @@ export default class Navbar extends Component {
     scroll.scrollToTop();
   };
 
+
+
   render() {
+    const navs = ['Apps', 'Games', 'About'];
     return (
-      <nav className="nav" id="navbar">
+      <nav className={"nav" + (this.props.landing ? " nav-landing" : "")} id="navbar">
         <div className="nav-content">
           {/* <img
             src={logo}
@@ -18,39 +21,23 @@ export default class Navbar extends Component {
             onClick={this.scrollToTop}
           /> */}
           <ul className="nav-items">
-            <li className="nav-item">
-              <Link
-                activeClass="active"
-                to="section2"
-                spy={true}
-                smooth={true}
-                duration={500}
-              >
-                Section 2
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                activeClass="active"
-                to="section3"
-                spy={true}
-                smooth={true}
-                duration={500}
-              >
-                Section 3
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                activeClass="active"
-                to="section4"
-                spy={true}
-                smooth={true}
-                duration={500}
-              >
-                Section 4
-              </Link>
-            </li>
+            {navs.map((value, index) => {
+              return (
+                <li className={"nav-item" + (this.props.dark ? " nav-dark" : " nav-light")} key={index}>
+                  <Link
+                    activeClass="active"
+                    to={value.replace(/\s+/g, '-').toLowerCase()}
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    {value}
+                  </Link>
+                </li>
+              )
+            })}
+            
+            
           </ul>
         </div>
       </nav>

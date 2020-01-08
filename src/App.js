@@ -10,34 +10,35 @@ class App extends Component {
     return (
       <div className="App">
         <Section
-          title="Section 1"
+          title="Landing"
           subtitle={dummyText}
           segment="dark"
+          dark={true}
           id="landing"
         />
         <Section
-          title="Section 2"
-          subtitle={dummyText}
-          segment="apps"
-          id="section2"
-        />
-        <Section
-          title="Section 3"
-          subtitle={dummyText}
-          segment="dark"
-          id="section3"
-        />
-        <Section
-          title="Section 4"
+          title="Apps"
           subtitle={dummyText}
           segment="about"
-          id="section4"
+          id="apps"
         />
         <Section
-          title="Section 5"
+          title="Games"
           subtitle={dummyText}
           segment="dark"
-          id="section5"
+          id="games"
+        />
+        <Section
+          title="About"
+          subtitle={dummyText}
+          segment="about"
+          id="about"
+        />
+        <Section
+          title="Secret"
+          subtitle={dummyText}
+          segment="dark"
+          id="secret"
         />
       </div>
     );

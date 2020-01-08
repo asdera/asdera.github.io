@@ -1,7 +1,7 @@
 import Alphabet from "./alphabet";
 
 class Asu {
-    constructor(p5, pix, display) {
+    constructor(p5, pix, display, light=true) {
         this.nodes = [];
         this.connections = [];
         this.letters = [];
@@ -13,6 +13,7 @@ class Asu {
             colour: "white"
         }
         this.display = display;
+        this.light = light;
 
         for (var i = 0; i <= p5.width; i += this.pix) {
             var row = [];
@@ -24,12 +25,17 @@ class Asu {
         }
     }
 
-    update(p5) {
-        p5.blendMode(p5.LIGHTEST);
-        this.letItGo(p5, p5.color(255, 0, 0), p5.PI/6);
-        this.letItGo(p5, p5.color(0, 255, 0), 5*p5.PI/6);
-        this.letItGo(p5, p5.color(0, 0, 255), 3*p5.PI/2);
-        p5.blendMode(p5.BLEND);
+    update(p5, dark) {
+        p5.noStroke();
+        if (this.light) {
+            p5.blendMode(dark ? p5.LIGHTEST : p5.DARKEST);
+            this.letItGo(p5, p5.color(255, 0, 0), p5.PI/6);
+            this.letItGo(p5, p5.color(0, 255, 0), 5*p5.PI/6);
+            this.letItGo(p5, p5.color(0, 0, 255), 3*p5.PI/2);
+            p5.blendMode(p5.BLEND);
+        } else {
+            this.letItGo(p5, dark ? p5.color(255, 255, 255) : p5.color(0, 0, 0), p5.PI/6);
+        }
 
         this.connections = this.connections.filter(x => x.reverse);
         this.letters = this.letters.filter(x => !x.erase);
