@@ -12,32 +12,31 @@ class App extends Component {
         <Section
           title="Landing"
           subtitle={dummyText}
-          segment="dark"
           dark={true}
           id="landing"
         />
         <Section
           title="Apps"
           subtitle={dummyText}
-          segment="about"
+          dark={false}
           id="apps"
         />
         <Section
           title="Games"
           subtitle={dummyText}
-          segment="dark"
+          dark={true}
           id="games"
         />
         <Section
           title="About"
           subtitle={dummyText}
-          segment="about"
+          dark={false}
           id="about"
         />
         <Section
           title="Secret"
           subtitle={dummyText}
-          segment="dark"
+          dark={true}
           id="secret"
         />
       </div>

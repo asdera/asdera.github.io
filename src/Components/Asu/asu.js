@@ -34,7 +34,7 @@ class Asu {
             this.letItGo(p5, p5.color(0, 0, 255), 3*p5.PI/2);
             p5.blendMode(p5.BLEND);
         } else {
-            this.letItGo(p5, dark ? p5.color(255, 255, 255) : p5.color(0, 0, 0), p5.PI/6);
+            this.letItGo(p5, dark ? p5.color(255, 255, 255) : p5.color(0, 0, 0), 0);
         }
 
         this.connections = this.connections.filter(x => x.reverse);

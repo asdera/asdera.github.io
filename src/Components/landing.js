@@ -20,18 +20,13 @@ export default class Landing extends Component {
         this.pix = squeeze/25;
 
         this.display = {
-            x: p5.width/2-this.pix*18,
+            x: p5.width/2-this.pix*17.5,
             y: 0,
         }
         
 
         this.p5 = p5;
         this.title = new Asu(p5, this.pix, this.display);
-
-        this.display = {
-            x: p5.width/2-this.pix*22,
-            y: p5.height-this.pix*8,
-        }
 
         this.f = 0;
         this.colors = [
@@ -48,7 +43,6 @@ export default class Landing extends Component {
         this.x = 50
         this.y = 50
         this.dark = true;
-        this.mode = 0;
         this.andrew = "Andrew Wang".split("").reverse();
         
         
@@ -58,12 +52,12 @@ export default class Landing extends Component {
         this.f++;
         
         if (this.f === 30) {
-            this.title.wordo(p5, "Welcome");
+            this.title.wordo(p5, "Welcome,");
         } else if (this.f === 60) {
             this.title.wordo(p5, " I'm");
         }
 
-        if (this.f % 5 === 0 && this.f > 80 && this.f <= 135) {
+        if (this.f % 5 === 0 && this.f > 80 && this.f <= 140) {
             this.title.delete();
         } else if (this.f % 5 === 0 && this.f > 155 && this.f <= 210) {
             this.title.wordo(p5, this.andrew.pop());
