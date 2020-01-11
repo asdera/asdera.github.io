@@ -4,6 +4,7 @@ import Landing from "./landing";
 import Sketch from 'react-p5'
 import "./Section.css";
 import Asu from "./Asu/asu";
+import Projects from "./projects";
 
 export default class Section extends Component {
   constructor(props) {
@@ -57,7 +58,6 @@ export default class Section extends Component {
     this.f++;
     
     if (this.f === 30) {
-      console.log(this.props.title)
         this.title.wordo(p5, this.props.title);
     }
 
@@ -83,8 +83,10 @@ export default class Section extends Component {
   }
 
   handleClick() {
-    this.dark = !this.dark;
-    this.lighting(this.dark);
+    if (this.p5.abs(this.display.y + this.pix*7 - this.p5.mouseY) < 6) {
+      this.dark = !this.dark;
+      this.lighting(this.dark);
+    }
   }
 
   lighting(d) {
@@ -94,6 +96,7 @@ export default class Section extends Component {
   }
 
   render() {
+    console.log(Projects)
     return (
       <div className={"section section-" + this.props.id}>
         
@@ -114,15 +117,15 @@ export default class Section extends Component {
               <Navbar dark = {this.state.dark}/>
             </div>
             <div className="section-half section-content">
-              <h1>{this.props.title}</h1>
-              <p>{this.props.subtitle}</p>
+              {Projects[this.props.id] && (Projects[this.props.id].map((value, index) => {
+                return (
+                  <div className="project" key={index}>
+                    {index}
+                  </div>
+                )
+              }))}
             </div>
-            
-            
-              
-            
           </div>
-          
         )}
         <div style={{clear: "both"}}></div>
       </div>

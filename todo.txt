@@ -7,3 +7,5 @@ add projects
 resume
 socials
 the future favours the bold
+petals background
+h1 behind subtitles and titles

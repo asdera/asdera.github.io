@@ -155,6 +155,12 @@ export default class Landing extends Component {
             p5.endShape();
         }
     }
+
+    leaf(p5, x, y, r) {
+        p5.push();
+
+        p5.pop();
+    }
     
     render() {    
         return (
