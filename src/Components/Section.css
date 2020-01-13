@@ -27,6 +27,36 @@
     width: 50%;
     display: flex;
     flex-direction: column;
+    text-align: center;
+}
+
+.section-info {
+    position: relative;
+    margin: auto;
+    height: 100%;
+    width: 60%;
+    text-align: center;
+}
+
+.section-info h1 {
+    font-size: 130px;
+    margin-top: 40%;
+    display: none;
+}
+
+.section-info p {
+    /* font-weight: bolder; */
+    font-size: 48px;
+    /* font-family: "Comic Sans MS"; */
+    /* display: none; */
+}
+
+.section-info img {
+    height: 20%;
+}
+
+.colour-dark {
+    color: white;
 }
 
 .section-landing {
@@ -50,4 +80,16 @@ canvas {
     width: 100%;
     height: 100vh;
     overflow: hidden;
+}
+
+#scorpion {
+    background: cyan;
+}
+
+#bhoppers {
+    background: lime;
+}
+
+#neon {
+    background: lightpink;
 }

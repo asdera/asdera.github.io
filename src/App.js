@@ -16,10 +16,10 @@ class App extends Component {
           id="landing"
         />
         <Section
-          title="Apps"
+          title="About"
           subtitle={dummyText}
           dark={false}
-          id="apps"
+          id="about"
         />
         <Section
           title="Games"
@@ -28,10 +28,10 @@ class App extends Component {
           id="games"
         />
         <Section
-          title="About"
+          title="Apps"
           subtitle={dummyText}
           dark={false}
-          id="about"
+          id="apps"
         />
         <Section
           title="Secret"

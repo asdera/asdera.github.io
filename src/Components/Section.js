@@ -33,13 +33,21 @@ export default class Section extends Component {
 
     this.f = 0;
     
+    this.bColor = {
+      "about": p5.color(150, 0, 0),
+      "games": p5.color(0, 150, 0),
+      "apps": p5.color(0, 0, 150), 
+      "secret": p5.color(100, 100, 100)
+    }[this.props.id]
+
     this.color = {
-      "apps": p5.color(200, 50, 50),
-      "games": p5.color(50, 200, 50),
-      "about": p5.color(50, 50, 200)
+      "about": p5.color(250, 150, 150),
+      "games": p5.color(150, 250, 150),
+      "apps": p5.color(150, 150, 250), 
+      "secret": p5.color(200, 200, 200)
     }[this.props.id]
     
-  console.log(this.color, this.props.id);
+    console.log(this.color, this.props.id);
 
     this.flash = 1;
     this.select = 0;
@@ -50,34 +58,30 @@ export default class Section extends Component {
   }
 
   draw = p5 => {
-    if (this.color) {
-      p5.background(this.color);
-    }
-    
-    p5.background(this.dark ? 0 : 255, 120);
+    p5.background(this.dark ? this.bColor : this.color);
     this.f++;
     
     if (this.f === 30) {
         this.title.wordo(p5, this.props.title);
     }
 
-    this.title.update(p5, this.dark);
+    this.title.update(p5, this.dark, this.dark ? 255 : 0);
 
     p5.noFill();
-    p5.stroke(this.dark ? 255 : 0);
+    p5.stroke(this.dark ? this.color : this.bColor);
     p5.strokeWeight(12);
     p5.line(this.display.x, this.display.y + this.pix*7, this.display.x + 2*(p5.width/2 - this.display.x), this.display.y + this.pix*7);
   
     p5.push();
     p5.noStroke();
-    var dent = this.pix*0.9;
-    p5.fill(72, 120)
-    p5.quad(0, 0, p5.width, 0, p5.width-dent, dent, dent, dent);
-    p5.fill(72, 80)
-    p5.quad(p5.width, 0, p5.width-dent, dent, p5.width-dent, p5.height-dent, p5.width, p5.height);
+    var dent = this.pix*2/3
     p5.fill(72, 60)
-    p5.quad(dent, p5.height-dent, 0, p5.height, p5.width, p5.height, p5.width-dent, p5.height-dent);
+    p5.quad(0, 0, p5.width, 0, p5.width-dent, dent, dent, dent);
     p5.fill(72, 40)
+    p5.quad(p5.width, 0, p5.width-dent, dent, p5.width-dent, p5.height-dent, p5.width, p5.height);
+    p5.fill(72, 30)
+    p5.quad(dent, p5.height-dent, 0, p5.height, p5.width, p5.height, p5.width-dent, p5.height-dent);
+    p5.fill(72, 20)
     p5.quad(dent, p5.height-dent, 0, p5.height, 0, 0, dent, dent);
     p5.pop();
   }
@@ -110,16 +114,19 @@ export default class Section extends Component {
           </>
         ) : (
           <div className="section-container" id={this.props.id}>
-            <div className="section-half section-details">
-              <div className="section-info" onClick={this.handleClick}>
-                <Sketch setup={this.setup} draw={this.draw} />
+            <div className="section-half section-details" onClick={this.handleClick}>
+              <Sketch setup={this.setup} draw={this.draw}/>
+              <div className="section-info">
+                <h1 className={this.state.dark ? "colour-dark" : ("colour-" + this.props.id)}>{this.props.title}</h1>
+                <p className={this.state.dark ? "colour-dark" : ("colour-" + this.props.id)}>{this.props.title}</p>
+                <img src={"/images/" + this.props.id + "Me" + (this.state.dark ? "Dark" : "") + ".png"} alt=""/>
               </div>
               <Navbar dark = {this.state.dark}/>
             </div>
             <div className="section-half section-content">
               {Projects[this.props.id] && (Projects[this.props.id].map((value, index) => {
                 return (
-                  <div className="project" key={index}>
+                  <div className="project" key={index} id={value.id}>
                     {index}
                   </div>
                 )

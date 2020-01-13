@@ -10,7 +10,7 @@ export default class Navbar extends Component {
 
 
   render() {
-    const navs = ['Apps', 'Games', 'About'];
+    const navs = ['About', 'Games', 'Apps'];
     return (
       <nav className={"nav" + (this.props.landing ? " nav-landing" : "")} id="navbar">
         <div className="nav-content">
