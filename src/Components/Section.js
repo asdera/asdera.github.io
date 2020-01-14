@@ -100,7 +100,7 @@ export default class Section extends Component {
   }
 
   render() {
-    console.log(Projects)
+    const colour = this.state.dark ? "colour-dark" : "colour-light";
     return (
       <div className={"section section-" + this.props.id}>
         
@@ -117,17 +117,24 @@ export default class Section extends Component {
             <div className="section-half section-details" onClick={this.handleClick}>
               <Sketch setup={this.setup} draw={this.draw}/>
               <div className="section-info">
-                <h1 className={this.state.dark ? "colour-dark" : ("colour-" + this.props.id)}>{this.props.title}</h1>
-                <p className={this.state.dark ? "colour-dark" : ("colour-" + this.props.id)}>{this.props.title}</p>
+                <h1 className={colour}>i</h1>
+                <p className={colour}>i</p>
                 <img src={"/images/" + this.props.id + "Me" + (this.state.dark ? "Dark" : "") + ".png"} alt=""/>
               </div>
               <Navbar dark = {this.state.dark}/>
             </div>
             <div className="section-half section-content">
-              {Projects[this.props.id] && (Projects[this.props.id].map((value, index) => {
+              {Projects[this.props.id] && (Projects[this.props.id].map((project, index) => {
                 return (
-                  <div className="project" key={index} id={value.id}>
-                    {index}
+                  <div className="project" key={index} id={project.id}>
+                    <div className="project-inner">
+                      <div className={colour + " project-title"}>
+                        <h1>{project.name}</h1>
+                      </div>
+                      <div className={colour + " project-info"}>
+                        {index}
+                      </div>
+                    </div>
                   </div>
                 )
               }))}

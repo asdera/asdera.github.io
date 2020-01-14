@@ -59,6 +59,10 @@
     color: white;
 }
 
+.colour-light {
+    color: black;
+}
+
 .section-landing {
     height: 100vh;
     width: 100%;
@@ -67,6 +71,27 @@
 .project {
     height: 50vh;
     width: 100%;
+    position: relative;
+}
+
+.project-inner {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%; 
+    height: 6em;
+    margin-top: -3em;
+}
+
+.project-title h1 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.project-info {
+    display: none;
 }
 
 canvas {
