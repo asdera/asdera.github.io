@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 // import Navbar from "./Components/Navbar";
 import Section from "./Components/Section";
-import dummyText from "./DummyText";
+import siteText from "./siteText";
 
 class App extends Component {
   render() {
@@ -11,31 +11,31 @@ class App extends Component {
       <div className="App">
         <Section
           title="Landing"
-          subtitle={dummyText}
+          subtitle={siteText.landing}
           dark={true}
           id="landing"
         />
         <Section
           title="About"
-          subtitle={dummyText}
+          subtitle={siteText.about}
           dark={false}
           id="about"
         />
         <Section
           title="Games"
-          subtitle={dummyText}
+          subtitle={siteText.games}
           dark={true}
           id="games"
         />
         <Section
           title="Apps"
-          subtitle={dummyText}
+          subtitle={siteText.apps}
           dark={false}
           id="apps"
         />
         <Section
           title="Secret"
-          subtitle={dummyText}
+          subtitle={siteText.secret}
           dark={true}
           id="secret"
         />

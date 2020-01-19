@@ -1,11 +1,11 @@
-# React With Smooth Scrolling
+# Andrew Wang
 
-![React with Smooth Scrolling](./images/cover.png)
+My Personal Website!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Visit the old site](https://asdera.github.io/original).
 
-## To Run
+<!-- ## To Run
 
 - clone this repository
 - run `npm install`
-- run `npm start`
+- run `npm start` -->

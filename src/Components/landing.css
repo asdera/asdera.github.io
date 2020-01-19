@@ -3,7 +3,6 @@
     position: absolute;
     left: 0;
     right: 0;
-    height: 50%;
     width: 100%;
 }
 
@@ -12,9 +11,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 75%;
 }
 
 #bottom {
+    height: 25%;
     bottom: 0;
 }
 
@@ -41,3 +42,16 @@ canvas {
     overflow: hidden;
 }
 
+.nav-bar {
+    position: relative;
+}
+
+#bottom .nav-item { 
+    opacity: 0;
+    transition: 0.3s;
+}
+
+#bottom:hover .nav-item { 
+    opacity: 1;
+    transition: 0.3s;
+}

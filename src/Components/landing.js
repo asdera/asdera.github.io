@@ -2,15 +2,25 @@ import React, { Component } from "react";
 import "./landing.css";
 import Sketch from 'react-p5'
 import Asu from "./Asu/asu";
+import Navbar from "./Navbar";
 
 export default class Landing extends Component {
     constructor(props) {
         super(props);
         this.state = { width: window.innerWidth, height: window.innerHeight };
         this.handleClick = this.handleClick.bind(this);
+        this.dark = true;
     }
 
 
+    preload = p5 => {
+        this.mountains = p5.loadImage("/images/landingMe" + (this.dark ? "Dark" : "") + ".png");
+        this.genera = p5.loadFont('/fonts/Genera-AltLight.ttf');
+    }
+
+    windowResized = p5 => {
+    }
+    
     setup = (p5, canvasParentRef) => {
         p5.createCanvas(window.innerWidth, window.innerHeight).parent(canvasParentRef)
         // p5.resizeCanvas(500, 500);
@@ -44,8 +54,8 @@ export default class Landing extends Component {
         this.y = 50
         this.dark = true;
         this.andrew = "Andrew Wang".split("").reverse();
-        
-        
+        p5.imageMode(p5.CENTER);
+        p5.textFont(this.genera);
     }
 
     draw = p5 => {
@@ -67,18 +77,19 @@ export default class Landing extends Component {
             }
         }
 
-        
-
         p5.push();
         p5.blendMode(p5.BLEND);
         p5.background(this.dark ? 0 : 255);
+        var mount = 0.15;
+        p5.image(this.mountains, p5.width/2, p5.max(p5.height*(1-mount), p5.height*(0.5-mount)+p5.mouseY), p5.height*mount*12, p5.height*mount*2);
+
+        // p5.background(this.dark ? 0 : 255, 100);
 
         if (this.f > 220) {
             p5.noStroke();
-            p5.textSize(40);
+            p5.textSize(48);
             p5.textAlign(p5.CENTER);
             p5.fill(this.dark ? 255 : 0, p5.min(255, (this.f-220)*2));
-            p5.textFont('Lato');
             p5.text("Computer Science and Math Enthusiast", p5.width/2, p5.height/3);
         }
 
@@ -116,13 +127,13 @@ export default class Landing extends Component {
         p5.push();
         p5.noStroke();
         var dent = this.pix*0.6;
-        p5.fill(72, 60)
+        p5.fill(72, 18)
         p5.quad(0, 0, p5.width, 0, p5.width-dent, dent, dent, dent);
-        p5.fill(72, 40)
+        p5.fill(72, 16)
         p5.quad(p5.width, 0, p5.width-dent, dent, p5.width-dent, p5.height-dent, p5.width, p5.height);
-        p5.fill(72, 30)
+        p5.fill(72, 12)
         p5.quad(dent, p5.height-dent, 0, p5.height, p5.width, p5.height, p5.width-dent, p5.height-dent);
-        p5.fill(72, 20)
+        p5.fill(72, 10)
         p5.quad(dent, p5.height-dent, 0, p5.height, 0, 0, dent, dent);
         p5.pop();
     }
@@ -165,7 +176,7 @@ export default class Landing extends Component {
     render() {    
         return (
             <>
-                <Sketch setup={this.setup} draw={this.draw} />
+                <Sketch setup={this.setup} draw={this.draw} preload={this.preload} windowResized={this.windowResized}/>
                 <div className="section-content" id="landing">
                     <div id="top" onClick={this.handleClick}>
                         <div className="inner">
@@ -176,7 +187,7 @@ export default class Landing extends Component {
                         </div>
                     </div>
                     <div id="bottom" onClick={this.handleClick}>
-
+                        <Navbar landing={true} dark={this.dark}/>
                     </div> 
                 </div>
             </>

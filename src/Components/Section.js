@@ -19,12 +19,11 @@ export default class Section extends Component {
     // p5.resizeCanvas(500, 500);
     p5.canvas.style.width = "100%";
     p5.canvas.style.height = "100%";
-    var squeeze = p5.min(p5.width*0.7, p5.height);
+    var squeeze = p5.min(p5.width*0.7, p5.height*0.5);
     this.pix = squeeze/20;
-
     this.display = {
         x: p5.width/2-this.pix*(this.props.id.length === 4 ? 7.5 : 9.5),
-        y: this.pix*2,
+        y: p5.height*0.1,
     }
     
 
@@ -34,16 +33,16 @@ export default class Section extends Component {
     this.f = 0;
     
     this.bColor = {
-      "about": p5.color(150, 0, 0),
-      "games": p5.color(0, 150, 0),
-      "apps": p5.color(0, 0, 150), 
+      "about": p5.color(60, 10, 10),
+      "games": p5.color(10, 60, 10),
+      "apps": p5.color(10, 10, 60), 
       "secret": p5.color(100, 100, 100)
     }[this.props.id]
 
     this.color = {
-      "about": p5.color(250, 150, 150),
-      "games": p5.color(150, 250, 150),
-      "apps": p5.color(150, 150, 250), 
+      "about": p5.color(248, 102, 175),
+      "games": p5.color(102, 248, 175),
+      "apps": p5.color(102, 175, 248), 
       "secret": p5.color(200, 200, 200)
     }[this.props.id]
     
@@ -75,13 +74,13 @@ export default class Section extends Component {
     p5.push();
     p5.noStroke();
     var dent = this.pix*2/3
-    p5.fill(72, 60)
+    p5.fill(72, 18)
     p5.quad(0, 0, p5.width, 0, p5.width-dent, dent, dent, dent);
-    p5.fill(72, 40)
+    p5.fill(72, 16)
     p5.quad(p5.width, 0, p5.width-dent, dent, p5.width-dent, p5.height-dent, p5.width, p5.height);
-    p5.fill(72, 30)
+    p5.fill(72, 12)
     p5.quad(dent, p5.height-dent, 0, p5.height, p5.width, p5.height, p5.width-dent, p5.height-dent);
-    p5.fill(72, 20)
+    p5.fill(72, 10)
     p5.quad(dent, p5.height-dent, 0, p5.height, 0, 0, dent, dent);
     p5.pop();
   }
@@ -99,6 +98,8 @@ export default class Section extends Component {
     })
   }
 
+
+
   render() {
     const colour = this.state.dark ? "colour-dark" : "colour-light";
     return (
@@ -110,16 +111,20 @@ export default class Section extends Component {
               dark = {this.state.dark}
               lighting = {this.lighting}
             />
-            <Navbar landing={true} dark={this.state.dark}/>
           </>
         ) : (
           <div className="section-container" id={this.props.id}>
             <div className="section-half section-details" onClick={this.handleClick}>
-              <Sketch setup={this.setup} draw={this.draw}/>
+              <Sketch setup={this.setup} draw={this.draw} preload={this.preload} windowResized={this.windowResized}/>
               <div className="section-info">
-                <h1 className={colour}>i</h1>
-                <p className={colour}>i</p>
-                <img src={"/images/" + this.props.id + "Me" + (this.state.dark ? "Dark" : "") + ".png"} alt=""/>
+                <h1 className={colour}>{this.props.title}</h1>
+                <p className={colour}>
+                  {this.props.subtitle}
+                  {this.props.id === "about" && <a href={'https://asdera.github.io/Resume/AW%20RESUME.pdf'}>Resume.</a>}
+                </p>
+                <div className="section-drop">
+                  <img src={"/images/" + this.props.id + "Me" + (this.state.dark ? "Dark" : "") + ".png"} alt=""/>
+                </div>
               </div>
               <Navbar dark = {this.state.dark}/>
             </div>
@@ -127,12 +132,14 @@ export default class Section extends Component {
               {Projects[this.props.id] && (Projects[this.props.id].map((project, index) => {
                 return (
                   <div className="project" key={index} id={project.id}>
-                    <div className="project-inner">
-                      <div className={colour + " project-title"}>
-                        <h1>{project.name}</h1>
-                      </div>
-                      <div className={colour + " project-info"}>
-                        {index}
+                    <div className={"project-fade project-" + colour}>
+                      <div className="project-inner">
+                        <div className={colour + " project-title"}>
+                          <h1>{project.name}</h1>
+                        </div>
+                        <div className={colour + " project-info"}>
+                          {index}
+                        </div>
                       </div>
                     </div>
                   </div>
