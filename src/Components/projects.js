@@ -1,4 +1,4 @@
-module.exports = {
+const helper = {
     "about": [
         {
             "to": "https://uwaterloo.ca/institute-for-quantum-computing/programs/qcsys",
@@ -212,3 +212,5 @@ module.exports = {
         }
     ],
 }
+
+export default helper;
