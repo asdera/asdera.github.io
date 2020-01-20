@@ -107,11 +107,23 @@ export default class Section extends Component {
     win.focus();
   }
 
+  viewMore = (to) => {
+    this.setState({
+      more: !this.state.more,
+    })
+  }
+
   render() {
     const colour = this.state.dark ? "colour-dark" : "colour-light";
     const colour1 = !this.state.dark ? "colour-dark" : "colour-light";
+    var projs = Projects[this.props.id];
+    const showLess = 3;
 
-    const projs = this.state.more ? Projects[this.props.id] : Projects[this.props.id].slice(0, 3);
+    if (projs) {
+      if (!this.state.more) {
+        projs = projs.slice(0, showLess);
+      }
+    } 
 
     return (
       <div className={"section section-" + this.props.id}>
@@ -154,6 +166,20 @@ export default class Section extends Component {
                   </div>
                 )
               }))}
+              {!this.state.more && (
+                <div className="project" key={showLess} id="more" onClick={this.viewMore}>
+                  <div className={"project-fade project-" + colour1}>
+                    <div className="project-inner">
+                      <div className={colour1 + " project-title"}>
+                        <h1>View More .  .  .</h1>
+                      </div>
+                      <div className={colour1 + " project-info"}>
+                        {/* <h1>View More .  .  .</h1> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}

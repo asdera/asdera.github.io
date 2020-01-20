@@ -1,3 +1,7 @@
+#more {
+    background-color: gray;
+}
+
 /* ABOUT */
 
 #shad {
@@ -19,6 +23,58 @@
 #enterprise {
     background-image: url(../images/about/enterprise.png);
 }
+
+#north {
+    background-image: url(../images/about/north.png);
+}
+
+
+/* GAMES */
+
+#scorpion {
+    background-image: url(../images/games/scorpion.png);
+}
+
+#bhoppers {
+    background-image: url(../images/games/bhoppers.png);
+}
+
+#neon {
+    background-image: url(../images/games/neon.png);
+}
+
+#hexagon {
+    background-image: url(../images/games/hexagon.png);
+}
+
+#fortnite {
+    background-image: url(../images/games/fortnite.png);
+}
+
+#acers {
+    background-image: url(../images/games/acers.png);
+}
+
+#volleyball {
+    background-image: url(../images/games/volleyball.png);
+}
+
+#flipper {
+    background-image: url(../images/games/flipper.png);
+}
+
+#gridiron {
+    background-image: url(../images/games/gridiron.png);
+}
+
+
+
+
+
+
+
+
+
 
 
 .project {
@@ -76,7 +132,11 @@
 .project:hover .project-title {
     transition: 0.1s;
     opacity: 0;
-    visibility: hidden;
+}
+
+#more:hover .project-title {
+    transition: 0.1s;
+    opacity: 1;
 }
 
 .project-title h1 {
@@ -86,6 +146,12 @@
     font-weight: bolder;
 }
 
+.project-info h1 {
+    font-size: 90px;
+    font-weight: bolder;
+}
+
+
 .project-info {
     transition: 0.2s;
     display: block;
@@ -93,7 +159,6 @@
     padding: 0 100px;
     overflow: hidden;
     opacity: 0;
-    
 }
 
 .project:hover .project-info {

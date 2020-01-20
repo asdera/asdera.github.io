@@ -1,5 +1,6 @@
 .section {
     position: relative;
+    color: black;
 }
 
 .section-dark {
