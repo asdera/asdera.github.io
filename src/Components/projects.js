@@ -28,7 +28,7 @@ module.exports = {
             "to": "https://hackthenorth.com/",
             "id": "north",
             "name": "Hack the North",
-            "description": "Attended this amazing event for three consecutive years! Shipped and pitched many different applications. (VR Graffiti, Sales Density Tracker, Robot Camera app)"
+            "description": "Canada's Biggest Hackathon. Attended this amazing event for three consecutive years! Shipped and pitched many different applications. (VR Graffiti, Sales Density Tracker, Robot Camera app)"
         },
         {
             "to": "https://campenterprise.ca/",
