@@ -1,3 +1,11 @@
-# This is my new personal website!
-## It contains links to all my highlighted projects
-### ANDREW WANG
+# Andrew Wang
+
+My Personal Website!
+
+[Visit the old site](https://asdera.github.io/original).
+
+<!-- ## To Run
+
+- clone this repository
+- run `npm install`
+- run `npm start` -->
