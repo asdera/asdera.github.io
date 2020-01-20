@@ -50,7 +50,7 @@ export default class Section extends Component {
       "contact": p5.color(230, 230, 230)
     }[this.props.id]
     
-    console.log(this.color, this.props.id);
+    // console.log(this.color, this.props.id);
 
     this.flash = 1;
     this.select = 0;

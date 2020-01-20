@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
 import "./Navbar.css";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   scrollToTop = () => {
     scroll.scrollToTop();
   };
-
-
 
   render() {
     const navs = ["About", "Games", "Apps"]; // , "Contact"
@@ -44,3 +42,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+export default Navbar;
