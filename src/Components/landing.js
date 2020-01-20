@@ -141,12 +141,14 @@ export default class Landing extends Component {
     handleClick() {
         // console.log
         // this.title.delete(); 
-        if (this.p5.abs(this.p5.height/2 - this.p5.mouseY) < 6) {
-            this.dark = !this.dark;
-            this.props.lighting(this.dark);
-        }
-        if (this.flash === 0) {
-            this.flash = 180;
+        if (this.p5) {
+            if (this.p5.abs(this.p5.height/2 - this.p5.mouseY) < 6) {
+                this.dark = !this.dark;
+                this.props.lighting(this.dark);
+            }
+            if (this.flash === 0) {
+                this.flash = 180;
+            }
         }
     }
 

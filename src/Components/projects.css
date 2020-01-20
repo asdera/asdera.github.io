@@ -1,0 +1,109 @@
+/* ABOUT */
+
+#shad {
+    background-image: url(../images/about/shad.png);
+}
+
+#qcsys {
+    background-image: url(../images/about/qcsys.png);
+}
+
+#starterhacks {
+    background-image: url(../images/about/starterhacks.png);
+}
+
+#jamhacks {
+    background-image: url(../images/about/jamhacks.png);
+}
+
+#enterprise {
+    background-image: url(../images/about/enterprise.png);
+}
+
+
+.project {
+    height: 50vh;
+    width: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.project:hover .project-colour-dark {
+    transition: 0.2s;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.project:hover .project-colour-light {
+    transition: 0.2s;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.project-colour-dark {
+    transition: 0.1s;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.project-colour-light {
+    transition: 0.1s;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.project-fade {
+    /* position: absolute; */
+    width: 100%;
+    height: 100%;
+}
+
+.project-inner {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%; 
+    height: 90px;
+    margin-top: -54px;
+}
+ 
+.project-title {
+    transition: 0.2s;
+    margin-top: 0;
+    overflow: hidden;
+    text-align: center;
+    opacity: 1;
+}
+
+.project:hover .project-title {
+    transition: 0.1s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.project-title h1 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 90px;
+    font-weight: bolder;
+}
+
+.project-info {
+    transition: 0.2s;
+    display: block;
+    margin-top: -160px;
+    padding: 0 100px;
+    overflow: hidden;
+    opacity: 0;
+    
+}
+
+.project:hover .project-info {
+    transition: 0.1s;
+    opacity: 1;
+}
+
+
+.project-info p {
+    margin-top: 0;
+    font-size: 28px;
+}
+

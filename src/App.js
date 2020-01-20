@@ -13,31 +13,36 @@ class App extends Component {
           title="Landing"
           subtitle={siteText.landing}
           dark={true}
+          more={false}
           id="landing"
         />
         <Section
           title="About"
           subtitle={siteText.about}
           dark={false}
+          more={false}
           id="about"
         />
         <Section
           title="Games"
           subtitle={siteText.games}
           dark={true}
+          more={false}
           id="games"
         />
         <Section
           title="Apps"
           subtitle={siteText.apps}
           dark={false}
+          more={false}
           id="apps"
         />
         <Section
-          title="Secret"
-          subtitle={siteText.secret}
+          title="Contact"
+          subtitle={siteText.contact}
           dark={true}
-          id="secret"
+          more={true}
+          id="contact"
         />
       </div>
     );

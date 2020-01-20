@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "./Navbar";
 import Landing from "./landing";
 import Sketch from 'react-p5'
+import "./projects.css";
 import "./Section.css";
 import Asu from "./Asu/asu";
 import Projects from "./projects";
@@ -9,7 +10,10 @@ import Projects from "./projects";
 export default class Section extends Component {
   constructor(props) {
       super(props);
-      this.state = { dark: this.props.dark };
+      this.state = { 
+        dark: this.props.dark,
+        more: this.props.more 
+      };
       this.handleClick = this.handleClick.bind(this);
       this.lighting = this.lighting.bind(this);
   }
@@ -22,7 +26,7 @@ export default class Section extends Component {
     var squeeze = p5.min(p5.width*0.7, p5.height*0.5);
     this.pix = squeeze/20;
     this.display = {
-        x: p5.width/2-this.pix*(this.props.id.length === 4 ? 7.5 : 9.5),
+        x: p5.width/2-this.pix*(this.props.id.length*1.5 + 1.5),
         y: p5.height*0.1,
     }
     
@@ -36,14 +40,14 @@ export default class Section extends Component {
       "about": p5.color(60, 10, 10),
       "games": p5.color(10, 60, 10),
       "apps": p5.color(10, 10, 60), 
-      "secret": p5.color(100, 100, 100)
+      "contact": p5.color(25, 25, 25)
     }[this.props.id]
 
     this.color = {
       "about": p5.color(248, 102, 175),
       "games": p5.color(102, 248, 175),
       "apps": p5.color(102, 175, 248), 
-      "secret": p5.color(200, 200, 200)
+      "contact": p5.color(230, 230, 230)
     }[this.props.id]
     
     console.log(this.color, this.props.id);
@@ -98,20 +102,25 @@ export default class Section extends Component {
     })
   }
 
-
+  viewLink = (to) => {
+    var win = window.open(to, '_blank');
+    win.focus();
+  }
 
   render() {
     const colour = this.state.dark ? "colour-dark" : "colour-light";
+    const colour1 = !this.state.dark ? "colour-dark" : "colour-light";
+
+    const projs = this.state.more ? Projects[this.props.id] : Projects[this.props.id].slice(0, 3);
+
     return (
       <div className={"section section-" + this.props.id}>
         
         {this.props.id === "landing" ? (
-          <>
-            <Landing 
-              dark = {this.state.dark}
-              lighting = {this.lighting}
-            />
-          </>
+          <Landing 
+            dark = {this.state.dark}
+            lighting = {this.lighting}
+          />
         ) : (
           <div className="section-container" id={this.props.id}>
             <div className="section-half section-details" onClick={this.handleClick}>
@@ -129,16 +138,16 @@ export default class Section extends Component {
               <Navbar dark = {this.state.dark}/>
             </div>
             <div className="section-half section-content">
-              {Projects[this.props.id] && (Projects[this.props.id].map((project, index) => {
+              {projs && (projs.map((project, index) => {
                 return (
-                  <div className="project" key={index} id={project.id}>
-                    <div className={"project-fade project-" + colour}>
+                  <div className="project" key={index} id={project.id} onClick={() => this.viewLink(project.to)}>
+                    <div className={"project-fade project-" + colour1}>
                       <div className="project-inner">
-                        <div className={colour + " project-title"}>
+                        <div className={colour1 + " project-title"}>
                           <h1>{project.name}</h1>
                         </div>
-                        <div className={colour + " project-info"}>
-                          {index}
+                        <div className={colour1 + " project-info"}>
+                          <p>{project.description}</p>
                         </div>
                       </div>
                     </div>
